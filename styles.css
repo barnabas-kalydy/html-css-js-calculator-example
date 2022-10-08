@@ -25,3 +25,7 @@ input {
 output {
     border: 4px;
 }
+
+select {
+    font-size: 32px;
+}

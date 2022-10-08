@@ -37,6 +37,10 @@ const modifyResultField = () => {
   );
 };
 
+operationEl.onchange = () => {
+  modifyResultField();
+};
+
 calBtnEl.addEventListener("click", () => {
   modifyResultField();
 });
@@ -47,6 +51,7 @@ document.addEventListener("keypress", (e) => {
   }
 });
 
+// todo add a mini-modal if validation failed
 const validateInput = (validationArray) => {
   let valid = true;
   validationArray.forEach((item) => {
@@ -54,20 +59,14 @@ const validateInput = (validationArray) => {
       valid = false;
     }
   });
-  if (valid) {
-    calBtnEl.disabled = false;
-  } else {
-    calBtnEl.disabled = true;
-  }
+  calBtnEl.disabled = !valid;
 };
 
 document.querySelectorAll(".input-validate").forEach((element) => {
   element.onkeyup = () => {
-    if (isNaN(element.value)) {
-      inputValidationArray[element.getAttribute("id").slice(-1)] = false;
-    } else {
-      inputValidationArray[element.getAttribute("id").slice(-1)] = true;
-    }
+    isNaN(element.value)
+      ? (inputValidationArray[element.getAttribute("id").slice(-1)] = false)
+      : (inputValidationArray[element.getAttribute("id").slice(-1)] = true);
     validateInput(inputValidationArray);
   };
 });
