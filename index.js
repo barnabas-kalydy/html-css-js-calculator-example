@@ -1,8 +1,10 @@
 const calBtnEl = document.getElementById("calculate-button");
-const firstNumberEl = document.getElementById("first-number-inp");
+const firstNumberEl = document.getElementById("number1");
 const operationEl = document.getElementById("operation-inp");
-const secondNumberEl = document.getElementById("second-number-inp");
+const secondNumberEl = document.getElementById("number2");
 const resultEl = document.getElementById("text-field");
+
+const inputValidationArray = [true, true];
 
 const calculate = (number1, operation, number2) => {
   number1 = Number(number1);
@@ -33,26 +35,39 @@ const modifyResultField = () => {
     operationEl.value,
     secondNumberEl.value
   );
-  console.log("hello");
 };
 
-// ! Add event listener to button click
 calBtnEl.addEventListener("click", () => {
   modifyResultField();
 });
 
-// ! Adds event listener for pressing enter key
 document.addEventListener("keypress", (e) => {
   if (e.key === "Enter") {
     modifyResultField();
   }
 });
 
-firstNumberEl.onkeyup = () => {
-  if (isNaN(firstNumberEl.value)) {
-    calBtnEl.disabled = true;
-    console.log("this is not a number");
-  } else {
+const validateInput = (validationArray) => {
+  let valid = true;
+  validationArray.forEach((item) => {
+    if (!item) {
+      valid = false;
+    }
+  });
+  if (valid) {
     calBtnEl.disabled = false;
+  } else {
+    calBtnEl.disabled = true;
   }
 };
+
+document.querySelectorAll(".input-validate").forEach((element) => {
+  element.onkeyup = () => {
+    if (isNaN(element.value)) {
+      inputValidationArray[element.getAttribute("id").slice(-1)] = false;
+    } else {
+      inputValidationArray[element.getAttribute("id").slice(-1)] = true;
+    }
+    validateInput(inputValidationArray);
+  };
+});
