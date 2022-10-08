@@ -47,3 +47,12 @@ document.addEventListener("keypress", (e) => {
     modifyResultField();
   }
 });
+
+firstNumberEl.onkeyup = () => {
+  if (isNaN(firstNumberEl.value)) {
+    calBtnEl.disabled = true;
+    console.log("this is not a number");
+  } else {
+    calBtnEl.disabled = false;
+  }
+};

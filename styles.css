@@ -5,6 +5,11 @@ button {
     margin: 8px;
 }
 
+button:disabled {
+    background-color: grey;
+    color: black;
+}
+
 body {
     background-color: aquamarine;
     margin: 8%;
