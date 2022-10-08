@@ -1,0 +1,12 @@
+button {
+    background-color: blue;
+    color: chartreuse;
+    padding: 5px;
+    margin: 8px;
+}
+
+body {
+    background-color: aquamarine;
+    margin: 8%;
+    text-align: center;
+}
