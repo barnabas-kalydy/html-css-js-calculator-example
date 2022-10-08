@@ -5,6 +5,8 @@ const secondNumberEl = document.getElementById("second-number-inp");
 const resultEl = document.getElementById("text-field");
 
 const calculate = (number1, operation, number2) => {
+  number1 = Number(number1);
+  number2 = Number(number2);
   let result;
   switch (operation) {
     case "+":
@@ -16,7 +18,7 @@ const calculate = (number1, operation, number2) => {
     case "/":
       result = number1 / number2;
       break;
-    case "x":
+    case "*":
       result = number1 * number2;
       break;
     default:
